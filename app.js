@@ -6,6 +6,7 @@ $(document).ready(function () {
   var time = 0;
   var id = "";
   var toStore = "";
+  var TAContent;
 
   $("#currentDay").append(currentDay);
 
@@ -22,10 +23,17 @@ $(document).ready(function () {
     } else {
       ampm = "pm";
     }
+
+    // Determine the text content of an area, creare area if it doesnt exist
+    TAContent = window.localStorage.getItem(`TA${i}`);
+    if (TAContent === null) {
+      window.localStorage.setItem(`TA${i}`, ``);
+    }
+
     // Append each line to the screen
     $(".container").append(`<div class="row time-block">
     <p class="text-center col-1 pt-2 border-top">${time + " " + ampm}</p>
-    <textarea name="TA${i}" id="TA${i}" cols="100" rows="3" placeholder=""></textarea>
+    <textarea name="TA${i}" id="TA${i}" cols="100" rows="3" placeholder="">${TAContent}</textarea>
     <button class="saveBtn" id="${i}">Save</button>
   </div>`);
     // determine the background color of each row
@@ -48,8 +56,7 @@ $(document).ready(function () {
     id = $(this).attr("id");
     // collect text content of given area, use for data in object
     data = $(`#TA${id}`).val();
-    // {TA0: "Wake up",
-    // TA2: "set off to work"
-    // TA7: "get off work"}
+    // Set the appropriate key to the given value
+    window.localStorage.setItem(`TA${id}`, data);
   });
 });
