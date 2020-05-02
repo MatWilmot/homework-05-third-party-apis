@@ -35,6 +35,7 @@ $(document).ready(function () {
     <p class="text-center col-1 pt-2 border-top">${time + " " + ampm}</p>
     <textarea name="TA${i}" id="TA${i}" cols="100" rows="3" placeholder="">${TAContent}</textarea>
     <button class="saveBtn" id="${i}">Save</button>
+    <button class="delBtn" id="${i}">Clear</button>
   </div>`);
     // determine the background color of each row
     if (i + 7 < currentHour) {
@@ -58,5 +59,13 @@ $(document).ready(function () {
     data = $(`#TA${id}`).val();
     // Set the appropriate key to the given value
     window.localStorage.setItem(`TA${id}`, data);
+  });
+
+  $(".delBtn").on("click", function () {
+    // collect id of text area to get
+    id = $(this).attr("id");
+    // set its data to " "
+    window.localStorage.setItem(`TA${id}`, " ");
+    $(`#TA${id}`).val("");
   });
 });
