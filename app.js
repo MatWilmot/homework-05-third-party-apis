@@ -4,6 +4,8 @@ $(document).ready(function () {
   var currentDay = day + ", " + date;
   var currentHour = moment().format("H");
   var time = 0;
+  var id = "";
+  var toStore = "";
 
   $("#currentDay").append(currentDay);
 
@@ -24,6 +26,7 @@ $(document).ready(function () {
     $(".container").append(`<div class="row time-block">
     <p class="text-center col-1 pt-2 border-top">${time + " " + ampm}</p>
     <textarea name="TA${i}" id="TA${i}" cols="100" rows="3" placeholder=""></textarea>
+    <button class="saveBtn" id="${i}">Save</button>
   </div>`);
     // determine the background color of each row
     if (i + 7 < currentHour) {
@@ -39,4 +42,14 @@ $(document).ready(function () {
       $(`#TA${i}`).attr("class", "future");
     }
   }
+  $(".saveBtn").on("click", function () {
+    // save to localStorage
+    // collect id of text area, use it for name value in object
+    id = $(this).attr("id");
+    // collect text content of given area, use for data in object
+    data = $(`#TA${id}`).val();
+    // {TA0: "Wake up",
+    // TA2: "set off to work"
+    // TA7: "get off work"}
+  });
 });
