@@ -26,14 +26,15 @@ $(document).ready(function () {
 
     // Determine the text content of an area, creare area if it doesnt exist
     TAContent = window.localStorage.getItem(`TA${i}`);
-    if (TAContent === null) {
-      window.localStorage.setItem(`TA${i}`, ``);
+    if (!TAContent) {
+      window.localStorage.setItem(`TA${i}`, " ");
+      TAContent = window.localStorage.getItem(`TA${i}`);
     }
 
     // Append each line to the screen
     $(".container").append(`<div class="row time-block">
     <p class="text-center col-1 pt-2 border-top">${time + " " + ampm}</p>
-    <textarea name="TA${i}" id="TA${i}" cols="100" rows="3" placeholder="">${TAContent}</textarea>
+    <textarea name="TA${i}" id="TA${i}" cols="100" rows="3">${TAContent}</textarea>
     <button class="saveBtn" id="${i}">Save</button>
     <button class="delBtn" id="${i}">Clear</button>
   </div>`);
