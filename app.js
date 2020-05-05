@@ -34,22 +34,22 @@ $(document).ready(function () {
     // Append each line to the screen
     $(".container").append(`<div class="row time-block">
     <p class="text-center col-1 pt-2 border-top">${time + " " + ampm}</p>
-    <textarea name="TA${i}" id="TA${i}" cols="100" rows="3">${TAContent}</textarea>
-    <button class="saveBtn" id="${i}">Save</button>
-    <button class="delBtn" id="${i}">Clear</button>
+    <textarea name="TA${i}" id="TA${i}" cols="auto" rows="3">${TAContent}</textarea>
+    <button class="saveBtn col-1 p-0" id="${i}">Save</button>
+    <button class="delBtn col-1 p-0" id="${i}">Clear</button>
   </div>`);
     // determine the background color of each row
     if (i + 7 < currentHour) {
       // make the background .past
-      $(`#TA${i}`).attr("class", "past");
+      $(`#TA${i}`).attr("class", "past col-9");
     }
     if (i + 7 == currentHour) {
       // make the background .present
-      $(`#TA${i}`).attr("class", "present");
+      $(`#TA${i}`).attr("class", "present col-9");
     }
     if (i + 7 > currentHour) {
       // make the background .future
-      $(`#TA${i}`).attr("class", "future");
+      $(`#TA${i}`).attr("class", "future col-9");
     }
   }
   $(".saveBtn").on("click", function () {
